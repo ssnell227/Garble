@@ -1,0 +1,34 @@
+-a turn based word game based on scrabble
+-a client-side gui that consists of a grid and tiles drawn in canvas
+-a server that stores the values displayed on the two players' grids as the game progresses
+-connected to a dictionary api that checks if the word is valid
+
+to build:
+CLIENT
+-a collection of total scrabble tiles for the game
+-a function that pulls tiles randomly from the collection of total tiles and adds them to the
+user's tile set, deleting the tiles from the original collection
+	-it should automatically replenish as the tiles are used on 'submit'
+-an interactive grid that allows users to type in the values from their tile sets into
+appropriate empty spots in the grid
+	-the user that plays first must play a word in spots that intersect the middle spot
+	of the board
+-a submit function that requests for the tile placements to be pushed to the server's game
+board and 'published' for both players to see
+	-only the player whose turn it is should be able to use the submit button effectively
+	-the tiles that the player submits must intersect previous played words and any
+	adjacent tiles must create a complete word
+		-the words, on submit, will be checked against a dictionary api that checks
+		only for presence
+		-if not present in the dictionary, the words will not be commited and the
+		user will be sent a message saying to submit a proper word
+
+SERVER
+-a 'master' game board object that stores the letter values for each location on the
+game board as well as their multiplyer values
+-a function that totals the letter values from each word submitted and multiplies it by any
+multiplyer locations the word was placed on, adding the total word score to the appropriate
+player's total score
+-a function that emits the values from the master game board to the associated tiles on both
+players screens after the server accepts a submit
+-some sort of endgame?
